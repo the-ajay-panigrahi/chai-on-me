@@ -19,7 +19,8 @@ const About = () => {
               <p className="max-w-xl text-lg text-gray-700 mx-auto md:mx-0">
                 Chai On Me is for developers and open-source contributors.
                 Create a simple profile, link your Razorpay, and let your fans
-                say `&quot;`thank you`&quot;` for your hard work with a direct donation.
+                say `&quot;`thank you`&quot;` for your hard work with a direct
+                donation.
               </p>
             </div>
             <div className="flex justify-center">
@@ -126,3 +127,8 @@ const About = () => {
 };
 
 export default About;
+
+export const metadata = {
+  title: "About - Chai On Me",
+  description: "Get paid for your open-source contributions.",
+};

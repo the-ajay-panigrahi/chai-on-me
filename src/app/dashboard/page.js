@@ -60,9 +60,7 @@ export default function DashboardPage() {
     toast.success("Profile saved successfully!");
   };
 
-  // This function validates the username input
   const handleUsernameChange = (e) => {
-    // Allow only lowercase letters and hyphens, and remove other characters
     const sanitizedValue = e.target.value.toLowerCase().replace(/[^a-z-]/g, "");
     setUsername(sanitizedValue);
   };
@@ -118,7 +116,6 @@ export default function DashboardPage() {
               <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
                 chaion.me/
               </span>
-              {/* UPDATED: Added the new onChange handler */}
               <input
                 type="text"
                 id="username"

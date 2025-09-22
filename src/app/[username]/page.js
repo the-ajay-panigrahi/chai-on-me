@@ -3,7 +3,6 @@ import Link from "next/link";
 import dbConnect from "@/db/db";
 import Profile from "@/models/profile.model";
 
-// This is a separate client component for the payment form
 import PaymentForm from "@/components/PaymentForm";
 
 export default async function ProfilePage({ params }) {
@@ -50,12 +49,10 @@ export default async function ProfilePage({ params }) {
 
   return (
     <div className="bg-gray-100 pb-10">
-      {/* Cover Image Section */}
       <div className="relative h-48 md:h-64">
         <img
           src={userData.coverPhoto || "/default-cover.png"}
           alt="Cover photo"
-          // FIXED: Replaced next/image props with Tailwind CSS classes
           className="w-full h-full object-cover"
         />
       </div>
@@ -66,7 +63,6 @@ export default async function ProfilePage({ params }) {
             <img
               src={userData.profilePicture || "/default-profile.png"}
               alt="Profile picture"
-              // FIXED: Replaced next/image props with Tailwind CSS classes
               className="w-full h-full object-cover rounded-full"
             />
           </div>
@@ -109,3 +105,8 @@ export default async function ProfilePage({ params }) {
     </div>
   );
 }
+
+export const metadata = {
+  title: `Profile - Chai On Me`,
+  description: "A platform for creators to receive support from their fans.",
+};

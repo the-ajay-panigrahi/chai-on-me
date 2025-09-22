@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 
-// Initialize Stripe with your public key
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
@@ -25,7 +24,6 @@ export default function PaymentForm({ username }) {
     }
 
     try {
-      // Call your backend to create a checkout session
       const response = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -37,7 +35,6 @@ export default function PaymentForm({ username }) {
         throw new Error("Could not create session");
       }
 
-      // Redirect to Stripe Checkout
       const stripe = await stripePromise;
       await stripe.redirectToCheckout({ sessionId });
     } catch (error) {

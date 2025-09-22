@@ -11,14 +11,14 @@ const SupporterSchema = new mongoose.Schema({
 
 // This defines the main structure for a user's profile
 const ProfileSchema = new mongoose.Schema({
-  email: { type: String, required: true, unique: true }, // From GitHub login
-  name: { type: String }, // From Dashboard form
-  username: { type: String, unique: true }, // From Dashboard form
-  profilePicture: { type: String }, // From Dashboard form
-  coverPhoto: { type: String }, // From Dashboard form
-  stripeKey: { type: String }, // From Dashboard form
-  stripeSecret: { type: String }, // From Dashboard form
-  supporters: [SupporterSchema], // A list of supporters
+  email: { type: String, required: true, unique: true },
+  name: { type: String },  
+  username: { type: String, unique: true },  
+  profilePicture: { type: String },
+  coverPhoto: { type: String },  
+  stripeKey: { type: String },  
+  stripeSecret: { type: String },  
+  supporters: [SupporterSchema], 
 });
 
 // This line prevents Mongoose from recompiling the model on every hot-reload

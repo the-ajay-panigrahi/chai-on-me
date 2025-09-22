@@ -17,7 +17,6 @@ export async function POST(request) {
       );
     }
 
-    // Initialize Stripe with the creator's secret key
     const stripe = new Stripe(userProfile.stripeSecret);
 
     const session = await stripe.checkout.sessions.create({
@@ -30,7 +29,7 @@ export async function POST(request) {
               name: `Support for @${username}`,
               description: `A kind donation from ${name || "Anonymous"}`,
             },
-            unit_amount: Math.round(amount * 100), // Amount in cents
+            unit_amount: Math.round(amount * 100),
           },
           quantity: 1,
         },

@@ -14,8 +14,6 @@ export async function GET(request) {
 
   const email = session.user.email;
   const profile = await Profile.findOne({ email });
-
-  // Return the found profile, or an empty object if none exists
   return NextResponse.json(profile || {});
 }
 
@@ -40,7 +38,7 @@ export async function POST(request) {
 
     return NextResponse.json(updatedProfile);
   } catch (error) {
-    console.error("ERROR SAVING PROFILE:", error); // Log the full error to the terminal
+    console.error("ERROR SAVING PROFILE:", error); 
     return NextResponse.json(
       { error: "Failed to save profile." },
       { status: 500 }
