@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -13,7 +12,7 @@ const Hero = () => {
         <div className="flex flex-col items-center justify-center h-full py-30 md:py-0 md:min-h-[84.2vh] px-4 text-center">
           <h1 className="text-3xl font-extrabold tracking-tight sm:text-6xl mb-4 bg-gradient-to-r from-black via-pink-600 to-black bg-clip-text text-transparent flex justify-center items-center flex-wrap">
             <span>Welcome to</span>{" "}
-            <Image
+            <img
               src="/chai.gif"
               className="h-10 w-10 md:w-20 md:h-20"
               width={1}
@@ -28,8 +27,8 @@ const Hero = () => {
           </h2>
 
           <p className="max-w-2xl mx-auto mt-4 text-lg text-gray-600">
-            Support your favorite developers and open-source contributors. Your
-            chai helps power the code you rely on every day.
+            A simple, elegant way for fans to directly support the developers
+            and open-source projects they admire.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
