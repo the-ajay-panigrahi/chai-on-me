@@ -5,6 +5,7 @@ const SupporterSchema = new mongoose.Schema({
   name: { type: String, required: true },
   message: { type: String },
   amount: { type: Number, required: true },
+  paymentId: { type: String, required: true, unique: true },
   createdAt: { type: Date, default: Date.now },
 });
 

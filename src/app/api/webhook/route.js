@@ -3,16 +3,13 @@ import Stripe from "stripe";
 import dbConnect from "@/db/db";
 import Profile from "@/models/profile.model";
 
-// This Stripe instance uses your main secret key to verify incoming webhook events.
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export async function POST(req) {
-  // 1. Get the signature from the request headers
   const sig = req.headers.get("stripe-signature");
   let event;
 
   try {
-    // 2. Use the signature to securely verify that the request is genuinely from Stripe
     const body = await req.text();
     event = stripe.webhooks.constructEvent(
       body,
@@ -20,26 +17,38 @@ export async function POST(req) {
       process.env.STRIPE_WEBHOOK_SECRET
     );
   } catch (err) {
-    // Handle verification errors
     return NextResponse.json(
       { error: `Webhook Error: ${err.message}` },
       { status: 400 }
     );
   }
 
-  // 3. Handle the 'checkout.session.completed' event
   if (event.type === "checkout.session.completed") {
     const session = event.data.object;
 
-    // 4. Extract the metadata we saved during checkout creation
-    const { supporterName, supportMessage, supportedUsername } =
-      session.metadata;
-    const amount = session.amount_total / 100; // Amount is in cents, convert to dollars
+    // Get the unique payment ID from the session
+    const paymentId = session.id;
 
-    // 5. Connect to the database
     await dbConnect();
 
-    // 6. Find the creator's profile and add the new supporter to their list
+    // CHECK FOR DUPLICATE: See if a supporter with this paymentId already exists
+    const existingSupporter = await Profile.findOne({
+      "supporters.paymentId": paymentId,
+    });
+
+    if (existingSupporter) {
+      console.log("✅ Supporter already exists for payment ID:", paymentId);
+      // If they exist, do nothing. Just send a success response to Stripe.
+      return NextResponse.json({ received: true });
+    }
+
+    // If no duplicate is found, proceed with adding the new supporter
+    const { supporterName, supportMessage, supportedUsername } =
+      session.metadata;
+    const amount = session.amount_total / 100;
+
+    console.log("➕ Adding new supporter for payment ID:", paymentId);
+
     await Profile.updateOne(
       { username: supportedUsername },
       {
@@ -48,12 +57,12 @@ export async function POST(req) {
             name: supporterName,
             message: supportMessage,
             amount: amount,
+            paymentId: paymentId, // Save the unique payment ID
           },
         },
       }
     );
   }
 
-  // 7. Send a success response back to Stripe
   return NextResponse.json({ received: true });
 }
