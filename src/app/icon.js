@@ -22,7 +22,7 @@ export default function Icon() {
           justifyContent: "center",
         }}
       >
-        <img src={`${process.env.NEXT_PUBLIC_URL}/chai.gif`} alt="favicon" />
+        <img src={`${process.env.NEXT_PUBLIC_URL}/favicon.png`} alt="favicon" />
       </div>
     ),
     {
