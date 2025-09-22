@@ -34,8 +34,8 @@ export default async function ProfilePage({ params }) {
       <div className="min-h-screen flex flex-col items-center justify-center text-center px-4">
         <h1 className="text-4xl font-bold">Profile Not Complete</h1>
         <p className="mt-4 max-w-md text-gray-700">
-          This creator hasn't finished setting up their profile yet. Please
-          check back later.
+          This creator hasn`&apos;`t finished setting up their profile yet.
+          Please check back later.
         </p>
         <p className="mt-2 text-sm text-gray-600">
           (If this is your profile, please complete your details in the{" "}
@@ -92,7 +92,7 @@ export default async function ProfilePage({ params }) {
                         <span className="font-semibold">${s.amount}</span>
                       </p>
                       <p className="text-gray-500 text-sm italic">
-                        "{s.message}"
+                        `&quot;`{s.message}`&quot;`
                       </p>
                     </div>
                   </li>

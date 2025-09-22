@@ -1,14 +1,17 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 const Login = () => {
   const { data: session } = useSession();
-  if (session) {
-    const router = useRouter();
-    router.push("/dashboard");
-  }
+  const router = useRouter();
+
+  useEffect(() => {
+    if (session) {
+      router.push("/dashboard");
+    }
+  }, [session, router]);
   return (
     <>
       <div className="relative min-h-[calc(100vh-6rem)]">
