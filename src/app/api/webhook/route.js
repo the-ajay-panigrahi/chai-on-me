@@ -26,23 +26,16 @@ export async function POST(req) {
   if (event.type === "checkout.session.completed") {
     const session = event.data.object;
     const paymentId = session.id;
-
-    await dbConnect();
-
-    const existingSupporter = await Profile.findOne({
-      "supporters.paymentId": paymentId,
-    });
-
-    if (existingSupporter) {
-      return NextResponse.json({ received: true });
-    }
-
     const { supporterName, supportMessage, supportedUsername } =
       session.metadata;
     const amount = session.amount_total / 100;
 
-    await Profile.updateOne(
-      { username: supportedUsername },
+    await dbConnect();
+    const result = await Profile.findOneAndUpdate(
+      {
+        username: supportedUsername,
+        "supporters.paymentId": { $ne: paymentId },
+      },
       {
         $push: {
           supporters: {
@@ -52,8 +45,18 @@ export async function POST(req) {
             paymentId: paymentId,
           },
         },
-      }
+      },
+      { new: true }
     );
+
+    if (result) {
+      console.log(
+        "✅ New supporter added successfully for payment ID:",
+        paymentId
+      );
+    } else {
+      console.log("Duplicate payment event ignored for payment ID:", paymentId);
+    }
   }
 
   return NextResponse.json({ received: true });

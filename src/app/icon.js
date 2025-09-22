@@ -22,7 +22,12 @@ export default function Icon() {
           justifyContent: "center",
         }}
       >
-        <img src={`${process.env.NEXT_PUBLIC_URL}/favicon.png`} alt="favicon" />
+        <img
+          src={
+            "https://imgs.search.brave.com/U98BNtrxUlWbaGtD7M6nfpjqYXfFVKv6vAoFMkHLV4E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9jaGFp/LTI5NjY1NzgzNi5q/cGc"
+          }
+          alt="favicon"
+        />
       </div>
     ),
     {
