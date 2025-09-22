@@ -58,6 +58,9 @@ export default function DashboardPage() {
     });
     setLoading(false);
     toast.success("Profile saved successfully!");
+    if (username) {
+      router.push(`/${username}`);
+    }
   };
 
   const handleUsernameChange = (e) => {

@@ -24,7 +24,7 @@ const UserDropdown = () => {
 
   const handleSignOut = () => {
     toast.success("Logged out successfully!");
-    signOut();
+    signOut({ callbackUrl: "/" });
   };
 
   const handleMouseEnter = () => {
