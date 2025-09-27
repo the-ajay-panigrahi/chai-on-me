@@ -83,6 +83,22 @@ Clone the repo and run locally:
 git clone https://github.com/the-ajay-panigrahi/chai-on-me/
 cd chai-on-me
 npm install
-# note: create a .env.local file and add your keys
+```
+
+#### Create a .env.local file in the root directory and add the following environment variables, replacing the placeholder values with your own keys
+
+```js
+GITHUB_ID=your_github_id
+GITHUB_SECRET=your_github_secret
+MONGODB_URI=your_mongodb_uri
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+STRIPE_SECRET_KEY=your_stripe_secret_key
+STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
+NEXTAUTH_SECRET=your_nextauth_secret
+NEXTAUTH_URL="http://localhost:3000"
+NEXT_PUBLIC_URL="http://localhost:3000"
+```
+
+```
 npm run dev
 ```
