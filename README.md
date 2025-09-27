@@ -80,8 +80,9 @@ I built ChaiOnMe to create a practical, real-world application that addresses a 
 Clone the repo and run locally:
 
 ```bash
-git clone YOUR_REPO_URL_HERE
-cd chaionme
+git clone https://github.com/the-ajay-panigrahi/chai-on-me/
+cd chai-on-me
 npm install
 # note: create a .env.local file and add your keys
 npm run dev
+```
